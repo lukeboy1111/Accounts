@@ -43,5 +43,9 @@ public class Account {
         String balanceString = formatter.format(balance);
 		return balanceString;
 	}
+
+	public void reduceBalance(int amount) {
+		balance = balance - amount;
+	}
 	
 }

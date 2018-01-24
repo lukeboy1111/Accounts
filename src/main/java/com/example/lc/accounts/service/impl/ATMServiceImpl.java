@@ -44,11 +44,28 @@ public class ATMServiceImpl implements ATMService {
 	}
 
 	@Override
-	public List<Notes> withdrawal(Account account, int amount) throws InvalidAmountException {
+	public List<Notes> withdrawalNotes(Account account, int amount) throws InvalidAmountException {
 		if(!isMultiple(amount, ATMConstants.FIVE)) {
 			throw new InvalidAmountException("Not a valid amount");
 		}
-		return null;
+		if(accountService.canWithdraw(account, amount)) {
+			List<Notes> notes = accountService.withdrawal(amount);
+			return notes;
+		}
+		else {
+			throw new InvalidAmountException("Account cannot withdraw requested amount");
+		}
+	}
+	
+	@Override
+	public Account makeWithdrawal(Account account, int amount) throws InvalidAmountException {
+		if(accountService.canWithdraw(account, amount)) {
+			account = accountService.reduceBalanceBy(account, amount);
+			return account;
+		}
+		else {
+			throw new InvalidAmountException("Account cannot withdraw requested amount");
+		}
 	}
 
 	@Override
@@ -60,5 +77,7 @@ public class ATMServiceImpl implements ATMService {
 	private boolean isMultiple(int a, int b) {
         return (a % b == 0);
     }
+
+	
 
 }

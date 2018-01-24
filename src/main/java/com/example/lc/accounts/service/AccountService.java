@@ -13,4 +13,5 @@ public interface AccountService {
 	public Optional<Account> find(String accountNumber);
 	public String accountBalance(Account account);
 	public boolean canWithdraw(Account account, int amount);
+	public Account reduceBalanceBy(Account account, int amount);
 }

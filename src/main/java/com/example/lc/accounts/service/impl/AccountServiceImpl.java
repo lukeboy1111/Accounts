@@ -51,4 +51,10 @@ public class AccountServiceImpl implements AccountService {
 		return account.canWithdraw(amount);
 	}
 
+	@Override
+	public Account reduceBalanceBy(Account account, int amount) {
+		account.reduceBalance(amount);
+		return account;
+	}
+
 }

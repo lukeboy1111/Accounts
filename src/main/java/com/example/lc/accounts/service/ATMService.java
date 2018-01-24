@@ -13,6 +13,7 @@ public interface ATMService {
 	public TellerMachine emptyMachine(TellerMachine model);
 	public Optional<String> accountBalance(String accountNumber);
 	public String accountBalance(Account account);
-	public List<Notes> withdrawal(Account account, int amount) throws InvalidAmountException;
+	public List<Notes> withdrawalNotes(Account account, int amount) throws InvalidAmountException;
+	public Account makeWithdrawal(Account account, int amount) throws InvalidAmountException;
 	
 }
