@@ -36,7 +36,9 @@ public class Currency {
 	public static ArrayList<Notes> getBalance(int balanceRequested) {
 		int remainder = balanceRequested;
 		ArrayList<Notes> listOfNotes = new ArrayList<Notes>();
-		
+		if(remainder == 0) {
+			return listOfNotes;
+		}
 		// always have at least two five pound notes.
 		if(remainder > ATMConstants.NUMBER_FIVES * Notes.FIVE.value()) {
 			remainder = remainder - (ATMConstants.NUMBER_FIVES * Notes.FIVE.value());

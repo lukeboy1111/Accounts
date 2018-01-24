@@ -1,5 +1,8 @@
 package com.example.lc.accounts.bo;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Account {
 	private String accountNumber;
 	private Double balance;
@@ -33,6 +36,12 @@ public class Account {
 			return true;
 		}
 		return false;
+	}
+
+	public String balanceAsString() {
+		NumberFormat formatter = new DecimalFormat("#0.00");
+        String balanceString = formatter.format(balance);
+		return balanceString;
 	}
 	
 }

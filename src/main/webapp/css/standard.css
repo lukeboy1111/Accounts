@@ -1,0 +1,134 @@
+body {
+    font-size:14px;
+    font-family: sans-serif;
+}
+
+#page-content-wrapper {
+	min-width: 80%;
+	position: absolute;
+	left:202px;
+}
+
+div.pavingItemDetail {
+    display:none;
+}
+
+div.clear {
+	clear:both;
+}
+
+div.pavingItem {
+	border: 1px solid black;
+	height: 40px;
+	background-color:white;
+}
+
+div.pavingName {
+	float: left;
+	width: 48%;
+	height: 40px;
+}
+
+div.pavingType {
+	float: left;
+	width: 48%;
+	height: 40px;
+}
+
+div.toggle {
+	float: left;
+    width: 4%;
+    height: 40px;
+}
+
+div.pavingItemDetail {
+	border: 1px solid grey;
+	padding-left: 2px;
+}
+
+.panel {
+    flex:1;
+    border: 1px solid transparent;
+    border-color:#ddd;
+    float:left;
+    background-color:#edebe6;
+    margin:20px;
+    width:80%;
+} 
+
+.row-striped:nth-of-type(odd){
+  background-color: #efefef;
+}
+
+.row-striped:nth-of-type(even){
+  background-color: #ffffff;
+}
+
+.panel form {
+    display:table;
+}
+
+.panel p {
+    display:table-row;
+}
+
+.panel label {
+	display:table-cell;
+}
+
+.panel input {
+	display:table-cell;
+	height:30px;
+	margin:1px;
+}
+
+.pageContentRow {
+	display:flex;
+}
+
+#assemblyCoefficientsPanel {
+	clear:both;
+}
+
+.panel-heading {
+	background-color: #2e87c9;
+    color: #fff;
+    font-weight: 700;
+    padding:10px 15px;
+}
+
+.panel-body {
+    padding:15px;
+}
+
+.btn-info {
+	font-size:14px;
+	background-color:#2e87c9;
+}
+
+.btn-info:hover {
+	background-color:#2e87c9;
+    color:#000000;
+}
+
+.btn-secondary {
+	font-size:14px;
+    background-color:#2e87c9;
+    margin:20px;
+}
+
+.btn-secondary:hover {
+	background-color:#2e87c9;
+    color:#000000;
+}
+
+.error {
+	color:red;
+	margin:20px;
+}
+
+.invalidClass {
+	color:red;
+}
+
+

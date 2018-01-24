@@ -3,14 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example.lc.accounts</groupId>
 	<artifactId>accounts</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>demo-accounts</name>
 	<version>1.0.0-SNAPSHOT</version>
+	<description>Demo With Simple SpringBoot Front End</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<springfox-version>2.6.1</springfox-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven.resources.overwrite>true</maven.resources.overwrite> 
+		<tomcat.version>7.0.59</tomcat.version>
+		<start-class>com.example.lc.accounts.AtmApplication</start-class>
 		
 	</properties>
 	<parent>
@@ -18,6 +25,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.7.RELEASE</version>
 	</parent>
+	
 	<build>
 		<finalName>project-api</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
@@ -34,29 +42,7 @@
 				</executions>
 			</plugin>
 			
-			  <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                  <execution>
-                    <id>copy-resources</id>
-                    <!-- here the phase you need -->
-                    <phase>validate</phase>
-                    <goals>
-                      <goal>copy-resources</goal>
-                    </goals>
-                    <configuration>
-                      <outputDirectory>${basedir}/target/deploy/</outputDirectory>
-                      <resources>          
-                        <resource>
-                          <directory>src/main/resources/azure</directory>
-                          <filtering>true</filtering>
-                        </resource>
-                      </resources>              
-                    </configuration>            
-                  </execution>
-                </executions>
-              </plugin>
+			  
 			  
 		</plugins>
 	</build>
@@ -64,10 +50,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -91,17 +73,14 @@
 			<version>${springfox-version}</version>
 		</dependency>
 		
-	<!-- Embeded Mongo -->
+	
 		<dependency>
-			<groupId>de.flapdoodle.embed</groupId>
-			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-			<scope>test</scope>
+			  <groupId>org.apache.tomcat</groupId>
+			  <artifactId>tomcat-util</artifactId>
+			  <version>7.0.59</version>
+			  <scope>runtime</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>de.flapdoodle.embed</groupId>
-			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-		</dependency>
 
 		<!-- Bean Validation API support -->
 		<dependency>

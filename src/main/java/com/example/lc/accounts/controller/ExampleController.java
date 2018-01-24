@@ -1,14 +1,18 @@
 package com.example.lc.accounts.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.lc.accounts.model.TellerMachine;
@@ -31,7 +35,7 @@ public class ExampleController {
 		atmService.replenish(model);
 	}
 	
-	@RequestMapping("/")
+	@GetMapping("/")
     public String showPavings(ModelMap modelMap, HttpSession httpSession) {
 		TellerMachine model = new TellerMachine();
         httpSession.setAttribute(ATMConstants.MODEL, model);
@@ -41,7 +45,7 @@ public class ExampleController {
         return "welcome";
     }
 	
-	@RequestMapping("/exampleOne")
+	@GetMapping("/example")
 	public String firstExample(ModelMap modelMap, HttpSession httpSession) {
 		 TellerMachine model = (TellerMachine) httpSession.getAttribute(ATMConstants.MODEL);
 		 checkModel(model);
