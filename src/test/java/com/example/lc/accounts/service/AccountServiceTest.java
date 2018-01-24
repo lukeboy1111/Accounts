@@ -39,9 +39,6 @@ public class AccountServiceTest {
 	
 	@Autowired
     private MockMvc mvc;
-    
-
-    
 	
 	@Before
     public void setUp() throws Exception {
@@ -53,9 +50,7 @@ public class AccountServiceTest {
 	@Test
 	public void testNotesReceived() {
 		int amount = 100;
-		
-		
-		
+
 		List<Notes> list = service.withdrawal(amount);
 		assertNotNull(list);
 		assertEquals(5, list.size());
@@ -95,12 +90,27 @@ public class AccountServiceTest {
 	}
 	
 	@Test
-	public void checkAccountWithdrawal() {
+	public void checkAccountBalanceRendersAsStrings() {
 		double bal = 2335.29;
 		String balString = "2335.29";
 		Account account = new Account("010101",bal );
-		given(atmService.accountBalance(account)).willReturn(balString);
 		
+		assertEquals(balString, service.accountBalance(account));
+		
+		bal = 2335.00;
+		balString = "2335.00";
+		account = new Account("010101",bal );
+		
+		assertEquals(balString, service.accountBalance(account));
+		
+	}
+	
+	@Test
+	public void checkCanWithdraw() {
+		
+		Account account = new Account("01001", 200.00);
+		int amount = 100;
+		assertTrue(service.canWithdraw(account, amount));
 	}
 	
 	private void checkNote(List<Notes> list, int index, int value) {
@@ -108,5 +118,7 @@ public class AccountServiceTest {
 		assertNotNull(note1);
 		assertEquals(value, note1.value());
 	}
+	
+	
 	
 }

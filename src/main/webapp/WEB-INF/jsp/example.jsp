@@ -4,6 +4,7 @@
 	<h2> Report </h2>
 	<ul>
 		<li>Test: ${testName }</li>
+		<li>Balance: ${balanceBefore }</li>
 		<li>Balance: ${balance }</li>
 	</ul>
 	

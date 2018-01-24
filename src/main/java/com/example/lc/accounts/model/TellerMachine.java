@@ -21,6 +21,7 @@ public class TellerMachine {
 	private List<Account> accounts;
 	
 	public TellerMachine() {
+		listNotes = new ArrayList<Notes>();
 		setOff();
 	}
 	
@@ -84,7 +85,19 @@ public class TellerMachine {
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
+
+	public void setNotes(List<Notes> notes) {
+		listNotes = notes;
+	}
 	
+	public List<Notes> getWithdrawalNotes() {
+		return listNotes;
+	}
+
+	public void reduceBalanceBy(int amount) {
+		currentBalance -= amount;
+		
+	}
 	
 	
 }

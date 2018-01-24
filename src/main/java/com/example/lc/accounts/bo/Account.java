@@ -19,10 +19,10 @@ public class Account {
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	public Double getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(Double balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 

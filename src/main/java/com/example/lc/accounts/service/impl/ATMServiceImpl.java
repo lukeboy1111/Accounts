@@ -48,13 +48,8 @@ public class ATMServiceImpl implements ATMService {
 		if(!isMultiple(amount, ATMConstants.FIVE)) {
 			throw new InvalidAmountException("Not a valid amount");
 		}
-		if(accountService.canWithdraw(account, amount)) {
-			List<Notes> notes = accountService.withdrawal(amount);
-			return notes;
-		}
-		else {
-			throw new InvalidAmountException("Account cannot withdraw requested amount");
-		}
+		List<Notes> notes = accountService.withdrawal(amount);
+		return notes;
 	}
 	
 	@Override
@@ -77,6 +72,21 @@ public class ATMServiceImpl implements ATMService {
 	private boolean isMultiple(int a, int b) {
         return (a % b == 0);
     }
+
+	@Override
+	public TellerMachine takeMoneyFromMachine(TellerMachine model, Account account, int amount) throws InvalidAmountException {
+		if(model.getCurrentBalance() <= amount) {
+			throw new InvalidAmountException("Machine has not enough money");
+		}
+		if(amount < ATMConstants.MIN_WITHDRAWAL || amount > ATMConstants.MAX_WITHDRAWAL) {
+			throw new InvalidAmountException("Request is outwith minimum and maximum limits");
+		}
+		account = makeWithdrawal(account, amount);
+		List<Notes> notes = withdrawalNotes(account, amount);
+		model.reduceBalanceBy(amount);
+		model.setNotes(notes);
+		return model;
+	}
 
 	
 
