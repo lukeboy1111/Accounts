@@ -15,21 +15,19 @@ public class TellerMachine {
 	
 	private final static Logger logger = Logger.getLogger(TellerMachine.class);
 	
-	private Boolean onState = false;
 	private Integer currentBalance;
 	private List<Notes> listNotes;
 	private List<Account> accounts;
 	
 	public TellerMachine() {
 		listNotes = new ArrayList<Notes>();
-		setOff();
+		
 	}
 	
 	public TellerMachine(List<Account> accounts) {
 		currentBalance = ATMConstants.STARTING_BALANCE;
 		listNotes = Currency.getBalance(currentBalance);
 		this.accounts = accounts;
-		setOn();
 	}
 	
 	public void replenish() {
@@ -38,7 +36,7 @@ public class TellerMachine {
 	}
 	
 	public Optional<List<Notes>> showNotes() {
-		if(isOn()) {
+		if(currentBalance > 0) {
 		  List<Notes> returnList = Currency.getBalance(currentBalance);
 		  return Optional.of(returnList);
 		}
@@ -47,28 +45,16 @@ public class TellerMachine {
 		}
 	}
 	
-	public Optional<List<Notes>> makeWithdrawal(Account account, double amount) {
-		// TODO: 
+	public Optional<List<Notes>> makeWithdrawal(Account account, Double amount) {
 		if(account.canWithdraw(amount)) {
-			return Optional.empty();
+			List<Notes> notes = Currency.getBalance(amount.intValue());
+			return Optional.of(notes);
 		}
 		else {
 			return Optional.empty();
 		}
 	}
 	
-	
-	public boolean isOn() {
-		return onState;
-	}
-	
-	public void setOn() {
-		onState = true;
-	}
-	
-	public void setOff() {
-		onState = false;
-	}
 
 	public Integer getCurrentBalance() {
 		return currentBalance;

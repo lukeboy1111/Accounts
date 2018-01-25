@@ -64,6 +64,21 @@ public class AccountServiceTest {
 	}
 	
 	@Test
+	public void testMoreNotesReceived() {
+		int amount = 110;
+
+		List<Notes> list = service.withdrawal(amount);
+		assertNotNull(list);
+		assertEquals(4, list.size());
+		// 50, 20, 20, 5, 5
+		checkNote(list, 0, 50);
+		checkNote(list, 1, 50);
+		checkNote(list, 2, 5);
+		checkNote(list, 3, 5);
+		
+	}
+	
+	@Test
 	public void testNotesReceivedWithFiver() {
 		int amount = 105;
 		

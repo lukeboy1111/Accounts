@@ -63,8 +63,15 @@ public class AtmServiceTest {
 	
 	@Test(expected=InvalidAmountException.class)
 	public void checkWithdrawalFunctionsMax() {
-		Account account = new Account("1", 100.00);
+		Account account = new Account("01001", 100.00);
 		int amount = 260;
+		service.takeMoneyFromMachine(model, account, amount);
+	}
+	
+	@Test(expected=InvalidAmountException.class)
+	public void checkWithdrawalFunctionsWithNotEnough() {
+		Account account = new Account("01001", 100.00);
+		int amount = 120;
 		service.takeMoneyFromMachine(model, account, amount);
 	}
 	
