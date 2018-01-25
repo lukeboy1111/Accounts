@@ -1,7 +1,7 @@
 <%@ include file="common/header.jspf"%>
 <%@ include file="common/navigation.jspf"%>
 
-	<h2> Demonstration </h2>
+	<h2> Example </h2>
 	<p>
 	Please select the following item for a demo.
 	</p>

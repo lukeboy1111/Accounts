@@ -1,5 +1,7 @@
 package com.example.lc.accounts.controller;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.lc.accounts.bo.Account;
+import com.example.lc.accounts.currency.Currency.Notes;
 import com.example.lc.accounts.model.TellerMachine;
 import com.example.lc.accounts.service.ATMService;
 import com.example.lc.accounts.service.AccountService;
@@ -50,13 +54,39 @@ public class ExampleController {
 		 TellerMachine model = (TellerMachine) httpSession.getAttribute(ATMConstants.MODEL);
 		 checkModel(model);
 	     setUp(model);
-	     
-	     
-	     
+	    
+		 
 	     modelMap.addAttribute("accounts", model.getAccounts());
-	     modelMap.addAttribute("balance", model.getCurrentBalance());
+	     modelMap.addAttribute("atmBalance", model.getCurrentBalance());
 	     modelMap.addAttribute("notes", model.showNotes());
 		 return "example";
+	}
+	
+	@GetMapping("/examplePageTwo")
+	public String firstExamplePageTwo(ModelMap modelMap, HttpSession httpSession) {
+		 TellerMachine model = (TellerMachine) httpSession.getAttribute(ATMConstants.MODEL);
+		 checkModel(model);
+	     setUp(model);
+	     
+	     Integer amount = 100;
+	     Integer oldAtmBalance = model.getCurrentBalance();
+	     Account account = new Account("01001", 200.00);
+	     Double oldBalance = account.getBalance();
+		 model = atmService.takeMoneyFromMachine(model, account, amount);
+		 List<Notes> list = model.getWithdrawalNotes();
+			
+		 Integer newAtmBalance = model.getCurrentBalance();
+		 Integer expected = oldAtmBalance - amount;
+		 Double newBalance = account.getBalance();
+		 Double expectedBalance = oldBalance - amount;
+		 
+	     
+	     modelMap.addAttribute("amount", amount);
+	     modelMap.addAttribute("atmBalanceOld", oldAtmBalance);
+	     modelMap.addAttribute("atmBalance", newAtmBalance);
+	     modelMap.addAttribute("accounts", model.getAccounts());
+	     modelMap.addAttribute("notes", model.showNotes());
+		 return "exampleTwo";
 	}
 	
 	private void checkModel(TellerMachine model) {

@@ -25,12 +25,7 @@ public class Account {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
-	@Override
-	public String toString() {
-		return "Account [accountNumber=" + accountNumber + ", balance=" + balance + "]";
-	}
-
+	
 	public boolean canWithdraw(double amount) {
 		if(balance >= amount) {
 			return true;
@@ -47,5 +42,12 @@ public class Account {
 	public void reduceBalance(int amount) {
 		balance = balance - amount;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [accountNumber=" + accountNumber + ", balance=" + balance + ", balanceAsString=" + balanceAsString()+"]";
+	}
+
+	
 	
 }

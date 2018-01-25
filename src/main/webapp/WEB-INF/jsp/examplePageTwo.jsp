@@ -1,7 +1,7 @@
 <%@ include file="common/header.jspf"%>
 <%@ include file="common/navigation.jspf"%>
 
-	<h2> Example </h2>
+	<h2> Example Page Two </h2>
 	<ul>
 		<li>Overall Balance: ${atmBalance }</li>
 		
